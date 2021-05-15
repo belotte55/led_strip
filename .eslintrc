@@ -1,0 +1,34 @@
+{
+  "extends": [
+  "airbnb-base"
+  ],
+  "plugins": [],
+  "env": {
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "new-cap" : 0,
+    "max-len": 0,
+    "padding-line-between-statements": ["error"],
+    "padded-blocks": 2,
+    "func-names": 0,
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "consistent-return": 0,
+    "prefer-destructuring": ["error", {
+      "array": false,
+      "object": true
+    }],
+    "function-paren-newline": ["error", "consistent"],
+    "no-param-reassign": 0,
+    "no-multi-spaces": ["error", {"ignoreEOLComments": true, "exceptions": { "VariableDeclarator": true }}],
+    "strict": 0,
+    "no-restricted-syntax": 0,
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "object-curly-newline": 0,
+    "no-underscore-dangle": ["error", { "allow":  ["__", "__n"] }],
+    "newline-per-chained-call": 0,
+    "arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }]
+  }
+}

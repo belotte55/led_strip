@@ -1,0 +1,31 @@
+{
+  "name": "led_strip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belotte55/led_strip.git"
+  },
+  "author": "frank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belotte55/led_strip/issues"
+  },
+  "homepage": "https://github.com/belotte55/led_strip#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
+    "redis": "^3.1.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.1.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-plugin-import": "2.20.1"
+  }
+}
