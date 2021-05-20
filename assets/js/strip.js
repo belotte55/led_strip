@@ -173,8 +173,8 @@ const setColorOnEachPixel = (color) => {
   request('PATCH', `/api/v1/strips/${strip.id}/pixels`, { pixels });
 };
 
-const removeStrip = (stripId) => {
-  request('DELETE', `/api/v1/strips/${stripId}`, null);
+const removeStrip = async (stripId) => {
+  await request('DELETE', `/api/v1/strips/${stripId}`);
   window.location = '/';
 };
 
