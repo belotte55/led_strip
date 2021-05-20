@@ -26,7 +26,7 @@
     "md5": "^2.3.0",
     "pug": "^3.0.2",
     "redis": "^3.1.2",
-    "rpi-ws281x-native": "^1.0.3",
+    "rpi-ws281x-native": "^0.10.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
