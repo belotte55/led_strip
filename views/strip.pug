@@ -1,0 +1,60 @@
+mixin pixel(pixel, index)
+  - const brightness = +pixel & 0xFF || 255;
+  - const color = (+pixel / 0x100) | 0 || 0xFF00FF;
+  - const red = (color / 0x10000) | 0;
+  - const green = (color / 0x100) & 0xFF;
+  - const blue = color & 0xFF;
+  div.pixel(style = `display: inline-block; background-color: rgba(${red}, ${green}, ${blue}, ${brightness});` data-rgba = pixel)
+    div.pickr(id = index)
+
+html
+  head
+    script(type = 'text/javascript' src = 'https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js')
+
+    link(href = 'https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css' rel = 'stylesheet' type = 'text/css')
+    link(href = 'https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css' rel = 'stylesheet' type = 'text/css')
+    link(href = 'https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css' rel = 'stylesheet' type = 'text/css')
+
+    include ./head.pug
+
+    script.
+      const strip = !{JSON.stringify(strip)};
+    script
+      include ../assets/js/utils.js
+      include ../assets/js/strip.js
+    style
+      include ../assets/css/index.css
+      include ../assets/css/strip.css
+
+  body
+    nav
+      div.nav-wrapper
+        div.col.s12
+          a.breadcrumb(href = '/') Strips
+          a.breadcrumb(href = `/strip/${strip.id}`)= strip.name
+
+    div#actions
+      a.waves-effect.waves-light.btn.blue-grey#clearAll(onClick = 'setColorOnEachPixel(\'#00000000\')') Clear All
+        i.material-icons.left clear
+      a.waves-effect.waves-light.btn#setAll() Set All
+        i.material-icons.left all_inclusive
+      a.waves-effect.waves-light.btn#rainbow(onclick = 'setRainbowPixels()') Rainbow
+        i.material-icons.left looks
+      a.waves-effect.waves-light.btn#random(onclick = 'setRandomPixels()') Random
+        i.material-icons.left shuffle
+      a.waves-effect.waves-light.btn.green#randomLive(onclick = 'setRandomPixelsLive()') Random - Live
+        i.material-icons.left shuffle_on
+      a.waves-effect.waves-light.btn.orange#randomLiveStop(onclick = 'stopRandomPixelsLive()' style = 'display: none;') Random - Stop
+        i.material-icons.left shuffle_on
+      a.waves-effect.waves-light.btn.modal-trigger.red(href = '#modal') Delete
+        i.material-icons.left delete_forever
+    div#pixels
+      each pixel, index in strip.pixels
+        +pixel(pixel, index)
+
+    div#modal.modal
+      div.modal-content
+        p Delete strip <b>#{strip.name}</b> ?
+      div.modal-footer
+        a.modal-close.waves-effect.btn.orange Cancel
+        a.modal-close.waves-effect.btn.red(onClick = `removeStrip('${strip.id}')`) Delete

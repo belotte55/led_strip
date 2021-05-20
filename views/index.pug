@@ -1,0 +1,45 @@
+html
+  head
+    include ./head.pug
+
+    script
+      include ../assets/js/utils.js
+      include ../assets/js/index.js
+
+    style
+      include ../assets/css/index.css
+
+  body
+    nav
+      div.nav-wrapper
+        div.col.s12
+          a.breadcrumb(href = '/') Strips
+
+    div.collection
+      each strip in strips
+        a.collection-item(href = `/strip/${strip.id}`)= strip.name
+          span.badge= strip.length
+
+    //- Button
+    a#addStrip.btn-floating.btn-large.waves-effect.waves-light.red(onClick = 'document.querySelector(\'#addStripBlock\').style.display = \`inline-block\`')
+      i.material-icons add
+    div#addStripBlock.row(style = 'display: none;')
+      div.col.s12
+        div.card
+          div.card-content
+            span.card-title Add Strip Config
+            div.row
+              form.col.s12
+                div.row
+                  div.input-field.col.s12
+                    input#name.validate(type = 'text')
+                    label(for = 'name') Name
+                div.row
+                  div.input-field.col.s12
+                    input#length.validate(type = 'number')
+                    label(for = 'length') Length
+          div.card-action
+            a.waves-effect.waves-light.btn.orange(onClick = 'document.querySelector(\'#addStripBlock\').style.display = \`none\`') Cancel
+              i.material-icons.left close
+            a.waves-effect.waves-light.btn(onClick = 'createStrip()') Add
+              i.material-icons.left add

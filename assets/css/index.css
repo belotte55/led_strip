@@ -1,0 +1,37 @@
+#addStrip {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.input-field {
+  margin-bottom: 0;
+}
+
+.row {
+  margin-bottom: 0;
+}
+
+a.btn {
+  margin: 5px;
+}
+
+#modal > div.modal-footer > a.modal-close.waves-effect.btn {
+  margin: 5px;
+}
+
+#addStripBlock {
+  position: absolute;
+  right: 20px;
+  bottom: 80px;
+}
+
+nav {
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 10px;
+}
+
+nav > div > div {
+  padding-left: 20px;
+}

@@ -6,18 +6,30 @@ Object.keys(require('./.env')).forEach(key => process.env[key.toUpperCase()] = r
 require('colors');
 const express = require('express');
 const http = require('http');
+const cookieParser = require('cookie-parser');
 
 // Services
 const apiService = require('./components/api/apiService');
 
 // Routes
-const authentication = require('./routes/authentication');
-const api = require('./routes/api');
+const api = require('./components/api/apiRoutes');
+const authentication = require('./components/authentication/authenticationRoutes');
+const strip = require('./components/strip/stripRoutes');
+const view = require('./components/view/viewRoutes');
 
 const app = express();
 const server = http.createServer(app);
 
+app.set('view engine', 'pug');
+
+app.use(express.json());
+app.use(cookieParser());
+
+app.use('/css', express.static('./assets/css'));
+
+app.use('/', authentication, view);
 app.use('/api/v1', authentication, api);
+app.use('/api/v1/strips', authentication, strip);
 
 app.use('*', (req, res) => res.status(404).end('404'));
 

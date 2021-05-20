@@ -19,8 +19,14 @@
   "homepage": "https://github.com/belotte55/led_strip#readme",
   "dependencies": {
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.5",
+    "dayjs": "^1.10.4",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "pug": "^3.0.2",
     "redis": "^3.1.2",
+    "rpi-ws281x-native": "^1.0.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
