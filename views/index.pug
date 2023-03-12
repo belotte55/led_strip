@@ -38,6 +38,10 @@ html
                   div.input-field.col.s12
                     input#length.validate(type = 'number')
                     label(for = 'length') Length
+                div.row
+                  div.input-field.col.s12
+                    input#offset.validate(type = 'number')
+                    label(for = 'offset') Offset
           div.card-action
             a.waves-effect.waves-light.btn.orange(onClick = 'document.querySelector(\'#addStripBlock\').style.display = \`none\`') Cancel
               i.material-icons.left close

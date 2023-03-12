@@ -7,8 +7,8 @@ const stripService = require('./stripService');
 
 router.route('/')
   .post(async (req, res) => {
-    const { length, name } = req.body;
-    const strip = await stripService.createStrip(length, name);
+    const { length, name, offset } = req.body;
+    const strip = await stripService.createStrip({ length, name, offset });
     return res.json(strip);
   })
   .get(async (req, res) => {

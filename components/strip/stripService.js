@@ -10,7 +10,7 @@ const ws281x = require('rpi-ws281x-native');
 const redis = require('../../modules/redis');
 
 const stripService = {
-  createStrip: async (length, name) => {
+  createStrip: async ({ length, name, offset }) => {
     const formattedNow = dayjs().format();
     const stripId = uuid.v4();
     if (!length) {
@@ -21,6 +21,7 @@ const stripService = {
       type: 'strip',
       name: name || stripId,
 
+      offset,
       length,
       pixels: Array(length).fill('0x00000000'),
       createdAt: formattedNow,
@@ -67,7 +68,7 @@ const stripService = {
       return;
     }
 
-    ws281x.init(strip.length);
+    ws281x.init(strip.offset + strip.length);
     ws281x.setBrightness(0xFF * 0.8);
 
     const pixels = strip.pixels.map((pixel) => {
@@ -79,7 +80,7 @@ const stripService = {
       return parseInt((parseInt(r * brightness, 10) * 0x010000 + parseInt(g * brightness, 10) * 0x000100 + parseInt(b * brightness, 10) * 0x000001), 10);
     });
 
-    ws281x.render(pixels);
+    ws281x.render([...Array(strip.offset).fill(0), ...pixels]);
   },
 
   updatePixel: async (stripId, index, color, brightness) => {
